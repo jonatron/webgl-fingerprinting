@@ -1,0 +1,215 @@
+
+<h1>Are the top websites using webgl for fingerprinting?</h1>
+
+Top sites from: <a href="https://www.alexa.com/topsites/countries/US">https://www.alexa.com/topsites/countries/US</a>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>Site</th>
+			<th>Fingerprinting?</th>
+			<th>JS URL</th>
+			<th>JS Snippet</th>
+		</tr>
+	</thead>
+	<tr>
+		<td>google.com</td>
+		<td>Yes</td>
+		<td>https://www.gstatic.com/og/_/js/...</td>
+		<td>window.botguard (very obfuscated)</td>
+	</tr>
+	<tr>
+		<td>youtube.com</td>
+		<td>Yes</td>
+		<td>https://www.youtube.com/s/player/.../player_ias.vflset/.../base.js</td>
+		<td>  g.CU = $a(function () {
+    var a = '';
+    try {
+      var b = g.Fe('CANVAS').getContext('webgl');
+      b && (b.getExtension('WEBGL_debug_renderer_info'), a = b.getParameter(37446), a = a.replace(/[ :]/g, '_'))
+    } catch (c) {
+    }
+    return a
+  });
+		</td>
+	</tr>
+	<tr>
+		<td>Amazon.com</td>
+		<td>Yes</td>
+		<td>https://c.amazon-adsystem.com/bao-csm/forensics/a9-tq-forensics.min.js</td>
+		<td>
+      b = H('(function fg45s() {                     var payload = [];                     var canvas = document.createElement("canvas");                     var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl") || canvas.getContext("moz-webgl");                     if (gl != null) {                         var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");                         if (debugInfo != null) {                             payload.push(btoa(gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL)));                             payload.push(btoa(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)));                             parent.postMessage(window.frameElement.id + " " + JSON.stringify(payload), parent.location.origin);                         }                     }                 }             )();', a);
+</td>
+	</tr>
+	<tr>
+		<td>Yahoo.com</td>
+		<td>Yes</td>
+		<td>https://s.yimg.com/rq/iv/inside.js</td>
+		<td>
+      try {
+        var t,
+        e = dt.createElement('canvas'),
+        n = e.getContext('webgl') || e.getContext('experimental-webgl');
+        return 0 <= n.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') ? (t = n.getParameter(n.getExtension('WEBGL_debug_renderer_info').UNMASKED_VENDOR_WEBGL), n.getParameter(n.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL) && t ? 1 : 0) : 0
+      } 
+      </td>
+	</tr>
+	<tr>
+		<td>Zoom.us</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Facebook.com</td>
+		<td>Yes</td>
+		<td>https://static.xx.fbcdn.net/rsrc.php/....js?_nc_x=...</td>
+		<td>  function g(a) {
+    var b = document.createElement('canvas');
+    b = b.getContext('webgl') || b.getContext('experimental-webgl');
+    if (!b) return;
+    var c = b.getExtension('WEBGL_debug_renderer_info');
+    if (!c) return;
+    var d = b.getParameter(c.UNMASKED_RENDERER_WEBGL);
+    b = b.getParameter(c.UNMASKED_VENDOR_WEBGL);
+    a.gpu_vendor = b;
+    a.gpu_renderer = d
+  }</td>
+	</tr>
+	<tr>
+		<td>Reddit.com</td>
+		<td>Yes</td>
+		<td>Unknown</td>
+		<td>Obfuscated <img src="reddit.png"></td>
+	</tr>
+	<tr>
+		<td>Wikipedia.org</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Myshopify.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Ebay.com</td>
+		<td>Yes</td>
+		<td>https://src.ebay-us.com/...</td>
+		<td>    td_D1 += td_kj.getParameter(td_kj.VERSION);
+    td_D1 += td_kj.getParameter(td_kj.SHADING_LANGUAGE_VERSION);
+    td_D1 += td_kj.getParameter(td_kj.VENDOR);
+    td_D1 += td_kj.getParameter(td_kj.RENDERER);</td>
+	</tr>
+	<tr>
+		<td>Bing.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Live.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Microsoft.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Chase.com</td>
+		<td>Yes</td>
+		<td>https://www.chase.com/c/.../etc/designs/chase-ux/clientlibs/chase-ux/js/dist/index.min.js</td>
+		<td>  var Gu = function () {
+    var t = u.createElement('canvas'),
+    n = t.getContext('webgl') || t.getContext('experimental-webgl');
+    if (p(n)) return null;
+    var e = n.getExtension('WEBGL_debug_renderer_info');
+    if (p(e)) return null;
+    var r = n.getParameter(e.UNMASKED_RENDERER_WEBGL);
+    return p(r) ? null : r
+  }();</td>
+	</tr>
+	<tr>
+		<td>Netflix.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Instructure.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Instagram.com</td>
+		<td>Yes</td>
+		<td>https://www.instagram.com/static/bundles/es6/Consumer.js/....js</td>
+		<td>    try {
+      o.addEventListener('webglcontextlost', t);
+      const s = o.getContext('webgl', u) || o.getContext('experimental-webgl', u);
+      if (!s) return {
+        supported: !1
+      };
+      const c = s.getExtension('WEBGL_debug_renderer_info');
+      c && (n = s.getParameter(c.UNMASKED_RENDERER_WEBGL)),
+      o.removeEventListener('webglcontextlost', t)
+    } catch (t) {</td>
+	</tr>
+	<tr>
+		<td>Zillow.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Twitch.tv</td>
+		<td>Yes</td>
+		<td>https://static.twitchcdn.net/assets/player-core-variant-....js</td>
+		<td>        if (t && i) {
+          if (!a && !u) {
+            var n = document.createElement('canvas');
+            try {
+              var r = n.getContext('webgl') || n.getContext('experimental-webgl');
+              if ('getExtension' in r) {
+                var o = r.getExtension('WEBGL_debug_renderer_info');
+                'getParameter' in r && (a = r.getParameter(o.UNMASKED_RENDERER_WEBGL), u = r.getParameter(o.UNMASKED_VENDOR_WEBGL))
+              }
+            } catch (e) {
+            }
+          }
+          e.arg.properties.gl_renderer = a,
+          e.arg.properties.gl_vendor = u
+        }</td>
+	</tr>
+	<tr>
+		<td>Intuit.com</td>
+		<td>Yes (via youtube)</td>
+		<td>https://www.youtube.com/s/player/.../player_ias.vflset/.../base.js</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Espn.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Linkedin.com</td>
+		<td>No</td>
+		<td></td>
+		<td></td>
+	</tr>
+
+
+
+</table>
+
+

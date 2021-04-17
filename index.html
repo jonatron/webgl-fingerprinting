@@ -72,7 +72,7 @@
         var t,
         e = dt.createElement('canvas'),
         n = e.getContext('webgl') || e.getContext('experimental-webgl');
-        return 0 <= n.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') ? (t = n.getParameter(n.getExtension('WEBGL_debug_renderer_info').UNMASKED_VENDOR_WEBGL), n.getParameter(n.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL) && t ? 1 : 0) : 0
+        return 0 &lt;= n.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') ? (t = n.getParameter(n.getExtension('WEBGL_debug_renderer_info').UNMASKED_VENDOR_WEBGL), n.getParameter(n.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL) && t ? 1 : 0) : 0
       } 
       </td>
 	</tr>
